@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+.gradient-color-01
+{
+    background-image: linear-gradient(#740074,#932693, #e160e1);
+}
+body
+{
+    margin: 0px;
+}

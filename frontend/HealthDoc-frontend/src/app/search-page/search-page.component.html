@@ -1,0 +1,57 @@
+<div class="gradient-color-01 h-100">
+  <div style="opacity:0;">Start here</div>
+  <div class="search-container">
+  <div class="container">
+  <h1>Health Doc</h1>
+
+  <form #searchInfo = "ngForm" (ngSubmit) = "onClickSubmit(searchInfo.value)" autocomplete="off">
+  <div class="search-form_3">
+  <label>Search By: </label>
+  <div>
+  <tr *ngFor="let entry of entries">
+      <td>{{ entry.description }}</td>
+      <td>
+          <input type="radio" name="radiogroup" 
+              [checked]="entry.id === 0" 
+              [value]="entry.id" 
+              (change)="onSelectionChange(entry)">
+      </td>
+  </tr>
+  </div>
+  
+
+  <input class="search_3" type="text" (keyup)="showSuggestions()" [(ngModel)]="disease" id="name" name="disease" 
+  placeholder="Search by" required>
+  <button type="submit" class="submit_3">Submit</button>
+  </div>
+  <div class="suggestion-container" *ngIf="showSuggestionBox">
+    <div class="suggestion" *ngFor="let s of suggestions" (click)="selectSuggestion(s._source.name)">
+      {{s._source.name}}
+    </div>
+
+
+  </div>
+  
+  
+<br/>
+<hr>
+  <label>Result:</label>
+  <div [innerHtml]="htmlVariable"></div>
+  <div class="container">
+      <ol>  
+        <li *ngFor="let d of data">
+      <label>Name : {{d._source.name}}</label><br/>
+      <div>Symptoms:
+        <ul>
+          <li *ngFor="let s of d._source.symptom">{{s}}</li>
+          <hr>
+        </ul>
+      </div>
+      </li>
+    </ol>
+  </div>
+
+  </form>
+  </div>
+  </div>
+  </div>
